@@ -20,12 +20,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-
-            $table->enum('status', array_map(
-                fn(UserStatusEnum $enum) => $enum->value,
-                UserStatusEnum::cases()
-            ))->default(UserStatusEnum::OPEN->value);
-
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

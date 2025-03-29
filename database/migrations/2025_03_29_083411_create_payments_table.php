@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\EventTypeEnum;
+use App\Enums\PaymentStateEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,18 +12,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->dateTime('start_at');
-            $table->string('image');
-            $table->enum('type', array_map(
-                fn(EventTypeEnum $enum) => $enum->value,
-                EventTypeEnum::cases()
+            $table->enum('status', array_map(
+                fn(PaymentStateEnum $enum) => $enum->value,
+                PaymentStateEnum::cases()
             ));
-            $table->text('description');
+          
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('payments');
     }
 };

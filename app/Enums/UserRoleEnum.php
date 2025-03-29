@@ -8,7 +8,5 @@ enum UserRoleEnum: string
 
     case ROLE_ADMIN = "administrateur";
 
-    case ROLE_PROFESSOR = "professeur";
-
-    case ROLE_STUDENT = "étudiant";
+    case ROLE_CLIENT = "client";
 }

@@ -26,14 +26,14 @@ class CompleteInfoStudent
 
             switch ($situation) {
                 case 'no-empty':
-                    $studentExist = StudentQueryBuilder::findToUser($user->id);
+                    // $studentExist = StudentQueryBuilder::findToUser($user->id);
 
-                    if (
-                        $user->hasRole(UserRoleEnum::ROLE_ANONYMOUS->value) ||
-                        !($studentExist instanceof Student)
-                    ) {
-                        return redirect()->route('no-empty-student.index');
-                    }
+                    // if (
+                    //     $user->hasRole(UserRoleEnum::ROLE_ANONYMOUS->value) ||
+                    //     !($studentExist instanceof Student)
+                    // ) {
+                    //     return redirect()->route('no-empty-student.index');
+                    // }
                     break;
 
                 case 'empty':

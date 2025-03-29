@@ -17,14 +17,8 @@ abstract class HasRoleUser
         return $user->hasRole(UserRoleEnum::ROLE_ANONYMOUS->value);
     }
 
-    public static function isProfessor(User $user): bool
+    public static function isClient(User $user): bool
     {
-        return $user->hasRole(UserRoleEnum::ROLE_PROFESSOR->value);
-    }
-
-
-    public static function isStudent(User $user): bool
-    {
-        return $user->hasRole(UserRoleEnum::ROLE_STUDENT->value);
+        return $user->hasRole(UserRoleEnum::ROLE_CLIENT->value);
     }
 }

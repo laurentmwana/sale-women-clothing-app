@@ -11,30 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('professor_id')
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-            $table->string('name');
-            $table->string('alias')->default('');
+            $table->string('image');
+            $table->string('name')->unique();
+            $table->float('price');
+            $table->text('description');
             $table->timestamps();
         });
 
-        Schema::create('course_level', function (Blueprint $table) {
-
-            $table->foreignId('course_id')
-                ->constrained()
-                ->cascadeOnDelete()   
-                ->cascadeOnUpdate();
-
-            $table->foreignId('level_id')
+        Schema::create('category_product', function (Blueprint $table) {
+            $table->foreignId('category_id')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->primary(['course_id', 'level_id']);
+            $table->foreignId('product_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
+            $table->primary(['product_id', 'category_id']);
         });
     }
 
@@ -43,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('products');
     }
 };

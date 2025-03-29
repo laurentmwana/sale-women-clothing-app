@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\UserRoleEnum;
 use App\Models\Category;
+use App\Models\Client;
 use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Course;
@@ -32,11 +33,14 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePermissionSeeder::class);
 
         User::factory()->create([
-            'name' => 'Laurent Mwana',
+            'name' => 'Agnès Kalala',
             'email' => 'admin@gmail.com',
-        ])
-            ->assignRole(Role::findByName(UserRoleEnum::ROLE_ADMIN->value))
+        ])->assignRole(Role::findByName(UserRoleEnum::ROLE_ADMIN->value))
         ;
 
+        User::factory(50)->create()->each(function (User $user) {
+            Client::factory()->create(['user_id' => $user->id]);
+            $user->assignRole(Role::findByName(UserRoleEnum::ROLE_CLIENT->value));
+        });
     }
 }
