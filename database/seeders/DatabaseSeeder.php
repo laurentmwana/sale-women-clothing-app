@@ -12,6 +12,7 @@ use App\Models\Deposit;
 use App\Models\Level;
 use App\Models\Option;
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\Professor;
 use App\Models\Quiz;
 use App\Models\Student;
@@ -42,5 +43,28 @@ class DatabaseSeeder extends Seeder
             Client::factory()->create(['user_id' => $user->id]);
             $user->assignRole(Role::findByName(UserRoleEnum::ROLE_CLIENT->value));
         });
+
+        Category::factory(10)->create();
+
+        $products = Product::factory(20)->create();
+
+        foreach ($products as $product) {
+            $categoriesId = [];
+            for ($i = 0; $i < 2; $i++) {
+                $categoriesId[] = Category::all()->random()->id;
+            }
+            $product->categories()->sync($categoriesId);
+        }
+
+        User::factory(30)->create()
+            ->each(function (User $user) {
+                $user->assignRole(
+                    Role::findByName(UserRoleEnum::ROLE_CLIENT->value)
+                );
+
+                Client::factory()->create([
+                    'user_id' => $user->id
+                ]);
+            });
     }
 }

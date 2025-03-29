@@ -16,7 +16,9 @@ class StockAction implements StockActionInterface
 
     public function updateStock(array $data, Stock $stock): Stock
     {
-        return DB::transaction(fn() => $stock->update($data));
+        DB::transaction(fn() => $stock->update($data));
+
+        return $stock;
     }
 
     public function deleteStock(Stock $stock): bool

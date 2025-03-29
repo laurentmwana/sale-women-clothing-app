@@ -30,7 +30,6 @@ class StockRequest extends FormRequest
             'product_id' => [
                 'required',
                 'exists:products,id',
-                (new Unique(Stock::class))->ignore($id),
             ],
 
             'stock_value' => [

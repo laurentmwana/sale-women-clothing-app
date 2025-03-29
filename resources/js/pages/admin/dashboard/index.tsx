@@ -20,11 +20,10 @@ const DashboardIndex = () => {
                 <div>
                     <h2 className="mb-4 text-base font-semibold">Tableau de bord</h2>
 
-                    <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-                        <ChartSimple label="Université" dataValue={12} />
-                        <ChartSimple label="Option" dataValue={3} />
-                        <ChartSimple label="Promotion" dataValue={60} />
-                        <ChartSimple label="Etudiant" dataValue={50} />
+                    <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols3">
+                        <ChartSimple label="Produit" dataValue={12} />
+                        <ChartSimple label="Client" dataValue={3} />
+                        <ChartSimple label="Stock" dataValue={60} />
                     </div>
 
                     <div className="grid grid-cols-1">

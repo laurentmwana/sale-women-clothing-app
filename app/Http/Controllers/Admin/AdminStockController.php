@@ -6,9 +6,11 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Http\Request;
 use App\Actions\StockAction;
+use App\Helpers\DataValues\DataFormatter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StockRequest;
+use App\Models\Stock;
 use App\Queries\StockQuery;
 
 class AdminStockController extends Controller
@@ -22,6 +24,7 @@ class AdminStockController extends Controller
 
         return Inertia::render('admin/stock/index', [
             'stocks' => $stocks,
+            'products' => DataFormatter::getProducts(),
         ]);
     }
 
@@ -31,12 +34,18 @@ class AdminStockController extends Controller
 
         return Inertia::render('admin/stock/show', [
             'stock' => $stock,
+            'products' => DataFormatter::getProducts(),
         ]);
     }
 
     public function store(StockRequest $request): RedirectResponse
     {
-        $this->stockAction->createStock($request->validated());
+        $stock = StockQuery::findForProduct($request->validated('product_id'));
+
+        $stock instanceof Stock
+            ? $this->stockAction->updateStock($request->validated(), $stock)
+            : $this->stockAction->createStock($request->validated());
+
 
         return redirect()->route('#stock.index')->with('toast', 'stock créé');
     }

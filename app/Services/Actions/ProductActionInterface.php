@@ -8,7 +8,7 @@ interface ProductActionInterface
 {
     public function createProduct(array $data): Product;
 
-    public function updateProduct(array $data, Product $Product): Product;
+    public function updateProduct(array $data, Product $product): Product;
 
-    public function deleteProduct(Product $Product): bool;
+    public function deleteProduct(Product $product): bool;
 }

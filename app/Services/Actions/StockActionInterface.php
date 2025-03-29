@@ -2,13 +2,13 @@
 
 namespace App\Services\Actions;
 
-use App\Models\Product;
+use App\Models\Stock;
 
-interface ProductActionInterface
+interface StockActionInterface
 {
-    public function createProduct(array $data): Product;
+    public function createStock(array $data): Stock;
 
-    public function updateProduct(array $data, Product $product): Product;
+    public function updateStock(array $data, Stock $stock): Stock;
 
-    public function deleteProduct(Product $product): bool;
+    public function deleteStock(Stock $stock): bool;
 }

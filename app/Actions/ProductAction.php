@@ -21,13 +21,15 @@ class ProductAction implements ProductActionInterface
 
     public function updateProduct(array $data, Product $product): Product
     {
-        return DB::transaction(function () use ($data, $product) {
+        DB::transaction(function () use ($data, $product) {
             $product->update($data);
 
             $product->categories()->sync($data['categories']);
 
             return $product;
         });
+
+        return $product;
     }
 
     public function deleteProduct(Product $product): bool

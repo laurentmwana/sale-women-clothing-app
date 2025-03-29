@@ -21,7 +21,7 @@ abstract class ProductQuery
 
     public static function findAllLimit(int $limit): Collection
     {
-        return Product::with(['categories', 'comments', 'user'])
+        return Product::with(['categories'])
             ->orderByDesc('updated_at')
             ->limit($limit)
             ->get();
@@ -30,12 +30,12 @@ abstract class ProductQuery
     public static function findAllWithFilters(Request $request): LengthAwarePaginator
     {
 
-        $builder =  Product::with(['categories', 'user', 'comments'])
+        $builder =  Product::with(['categories', 'likes', 'stock'])
             ->orderByDesc('updated_at');
 
         $categoryId = $request->query('category');
 
-        $columnSearch = ['title', 'content', 'image'];
+        $columnSearch = ['name', 'descripton', 'image', 'price', 'slug'];
 
         $serachValue = $request->query('q');
 
@@ -61,7 +61,7 @@ abstract class ProductQuery
 
     public static function findAllWithRelation(Request $request): Collection
     {
-        return Product::with(['categories'])
+        return Product::with(['categories', 'stock'])
             ->orderByDesc('updated_at')
             ->get();
     }
@@ -75,10 +75,8 @@ abstract class ProductQuery
     {
         return Product::with([
             'categories',
-            'user',
-            'comments' => fn($q) => $q->orderByDesc('created_at'),
-            'comments.replyComments' => fn($q) => $q->orderByDesc('created_at'),
-        ])
-            ->findOrFail($id);
+            'likes',
+            'stock'
+        ])->findOrFail($id);
     }
 }

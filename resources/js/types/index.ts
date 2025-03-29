@@ -49,44 +49,11 @@ export interface UserRole {
     name: string;
 }
 
-export interface Post {
+export interface Stock {
     id: number;
-    title: string;
-    slug: string;
-    image: string;
-    content: string;
-    created_at: string;
-    updated_at: string;
-    user: User;
-    user_id: number;
-    categories: Category[];
-    comments: Comment[];
-}
-
-export interface Event {
-    id: number;
-    title: string;
-    slug: string;
-    description: string;
-    type: string;
-    start_at: string;
-    image: string;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface Deposit {
-    id: number;
-    start_at: string;
-    end_at: string;
-    level_id: number;
-    level: Level;
-    price: number;
-    token: string;
-    year_academic_id: number;
-    year_academic: YearAcademic;
-    work_pratical_id: number;
-    work_pratical: WorkPratical;
+    stock_value: number
+    product: Product
+    product_id: number
     created_at: string;
     updated_at: string;
 }
@@ -94,163 +61,42 @@ export interface Deposit {
 export interface Category {
     id: number;
     name: string;
-    slug: string;
+    products: Product[];
     created_at: string;
     updated_at: string;
-    posts: Post[];
+}
+
+export interface Product {
+    id: number;
+    name: string;
+    slug: string;
+    image: string;
+    price: number;
+    description: string;
+    created_at: string;
+    updated_at: string;
+    categories: Category[];
+    likes: Like[];
+    comments: Comment[];
+}
+
+export interface Like {
+    id: number;
+    product_id: number;
+    user_id: number
+    product: Product
+    user: User
+    created_at: string;
+    updated_at: string;
 }
 
 export interface Comment {
     id: number;
     username: string;
     message: string;
-    post: Post;
+    product: Product;
     lock: boolean;
-    post_id: number;
-    created_at: string;
-    updated_at: string;
-    reply_comments: ReplyComment[];
-}
-
-export interface ReplyComment {
-    id: number;
-    username: string;
-    message: string;
-    lock: boolean;
-    created_at: string;
-    updated_at: string;
-    comment_id: number;
-}
-
-export interface Contact {
-    id: number;
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface University {
-    id: number;
-    name: string;
-    alias: string;
-    options: Option[];
-    created_at: string;
-    updated_at: string;
-}
-
-export interface Option {
-    id: number;
-    name: string;
-    alias: string;
-    levels: Level[];
-    universities: University[];
-    created_at: string;
-    updated_at: string;
-}
-
-export interface Level {
-    id: number;
-    name: string;
-    alias: string;
-    option_id: number;
-    option: Option;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface Professor {
-    id: number;
-    full_name: string;
-    phone: string;
-    gender: string;
-    speciality: string;
-    courses: Course[];
-    user: User;
-    user_id: number;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface WorkPratical {
-    id: number;
-    title: string;
-    slug: string;
-    document: string;
-    description: string;
-    course_id: number;
-    course: Course;
-    year_academic_id: number;
-    year_academic: YearAcademic;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface SupportCourse {
-    id: number;
-    title: string;
-    slug: string;
-    document: string;
-    description: string;
-    course_id: number;
-    course: Course;
-    year_academic_id: number;
-    year_academic: YearAcademic;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface Course {
-    id: number;
-    name: string;
-    alias: string;
-    professor_id: number;
-    professor: Professor;
-    levels: Level[];
-    work_praticals: WorkPratical[];
-    support_courses: SupportCourse[];
-    created_at: string;
-    updated_at: string;
-}
-
-export interface YearAcademic {
-    id: number;
-    name: string;
-    is_active: boolean;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface Student {
-    id: number;
-    full_name: string;
-    phone: string;
-    gender: string;
-    registration_number: string;
-    user: User;
-    user_id: number;
-    created_at: string;
-    updated_at: string;
-}
-
-export interface Payment {
-    id: number;
-    amount: number;
-    status: string;
-    student_id: number;
-    student: Student;
-    work_pratical_id: number;
-    work_pratical: WorkPratical;
-    year_academic_id: number | null;
-    year_academic: YearAcademic | null;
-    level_id: number | null;
-    level: Level;
-    mobile_money_name: string;
-    payment_at: string;
-    deposit_id: number;
-    deposit: Deposit;
+    product_id: number;
     created_at: string;
     updated_at: string;
 }

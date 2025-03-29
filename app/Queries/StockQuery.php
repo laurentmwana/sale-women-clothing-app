@@ -45,4 +45,10 @@ class StockQuery
         return Stock::with(['product'])
             ->findOrFail($id);
     }
+
+    public static function findForProduct(int $productId): ?Stock
+    {
+        return Stock::where('product_id', '=', $productId)
+            ->first();
+    }
 }

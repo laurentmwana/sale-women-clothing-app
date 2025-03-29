@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Unique;
 
 class ProductRequest extends FormRequest
 {
@@ -23,18 +21,17 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id = $this->input('id');
-
         return  [
             'name' => [
                 'required',
                 'between:3,255',
-                (new Unique(Product::class))->ignore($id),
             ],
+            'price' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
 
             'description' => [
-                'required',
-                'min:100'
+                'nullable',
+                'min:100',
+                'max:9000'
             ],
 
             'categories' => ['required', 'array', 'exists:categories,id', 'between:1,2'],

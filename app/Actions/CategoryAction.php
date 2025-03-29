@@ -16,7 +16,9 @@ class CategoryAction implements CategoryActionInterface
 
     public function updateCategory(array $data, Category $category): Category
     {
-        return DB::transaction(fn() => $category->update($data));
+        DB::transaction(fn() => $category->update($data));
+
+        return $category;
     }
 
     public function deleteCategory(Category $category): bool
