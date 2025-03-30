@@ -21,7 +21,7 @@ abstract class ProductQuery
 
     public static function findAllLimit(int $limit): Collection
     {
-        return Product::with(['categories'])
+        return Product::with(['categories', 'likes', 'stock'])
             ->orderByDesc('updated_at')
             ->limit($limit)
             ->get();

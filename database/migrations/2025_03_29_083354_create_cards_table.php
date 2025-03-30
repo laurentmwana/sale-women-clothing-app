@@ -17,13 +17,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-
         Schema::create('card_product', function (Blueprint $table) {
             $table->foreignId('product_id')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->integer('quantity');
 
             $table->foreignId('card_id')
                 ->constrained()

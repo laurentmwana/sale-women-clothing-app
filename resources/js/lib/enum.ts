@@ -1,3 +1,7 @@
+export enum MAX_VALUES {
+    stock = 100,
+}
+
 export enum PAYMENT_STATE {
     PENDING = 'en cours',
     CANCELED = 'annuler',

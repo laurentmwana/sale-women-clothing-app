@@ -1,12 +1,12 @@
 import { BaseLayout } from '@/layouts/base-layout';
-import type { SharedData } from '@/types';
+import type { Product, SharedData } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
-import { SectionAbout } from './section-about';
 import { SectionHero } from './section-hero';
+import { SectionProduct } from './section-product';
 
-type WelcomeIndexProps = {};
+type WelcomeIndexProps = { products: Product[] };
 
-const WelcomeIndex = () => {
+const WelcomeIndex = ({ products }: WelcomeIndexProps) => {
     const { auth } = usePage<SharedData & WelcomeIndexProps>().props;
 
     return (
@@ -14,7 +14,7 @@ const WelcomeIndex = () => {
             <Head title="Accueil" />
             <div className="container-doshed">
                 <SectionHero />
-                <SectionAbout />
+                <SectionProduct products={products} />
             </div>
         </BaseLayout>
     );

@@ -4,16 +4,19 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader } from '@/components/ui/loader';
 import { SelectSingle } from '@/components/ui/select-single';
+import { Textarea } from '@/components/ui/textarea';
 import { FormatterObject } from '@/types';
 import { useForm } from '@inertiajs/react';
 import { Pen } from 'lucide-react';
 import { FormEvent } from 'react';
 
-type StudentFormProps = { genders: FormatterObject[] };
+type ClientFormProps = { genders: FormatterObject[] };
 
-export const StudentForm = ({ genders }: StudentFormProps) => {
+export const ClientForm = ({ genders }: ClientFormProps) => {
     const { data, post, processing, setData, errors, reset } = useForm({
-        full_name: '',
+        name: '',
+        firstname: '',
+        address: '',
         phone: '',
         gender: '',
     });
@@ -21,7 +24,7 @@ export const StudentForm = ({ genders }: StudentFormProps) => {
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        post(route('no-empty-student.complete'), {
+        post(route('no-empty-client.complete'), {
             onSuccess: () => reset(),
         });
     };
@@ -29,9 +32,15 @@ export const StudentForm = ({ genders }: StudentFormProps) => {
     return (
         <form onSubmit={onSubmit} className="space-y-4">
             <div>
-                <Label htmlFor="full_name">Nom complet</Label>
-                <Input id="full_name" value={data.full_name} onChange={(e) => setData('full_name', e.target.value)} />
-                <InputError message={errors.full_name} />
+                <Label htmlFor="name">Nom</Label>
+                <Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} />
+                <InputError message={errors.name} />
+            </div>
+
+            <div>
+                <Label htmlFor="firstname">Postnom</Label>
+                <Input id="firstname" value={data.firstname} onChange={(e) => setData('firstname', e.target.value)} />
+                <InputError message={errors.firstname} />
             </div>
 
             <div>
@@ -54,6 +63,12 @@ export const StudentForm = ({ genders }: StudentFormProps) => {
                     })}
                 />
                 <InputError message={errors.gender} />
+            </div>
+
+            <div>
+                <Label htmlFor="address">Adresse</Label>
+                <Textarea id="address" value={data.address} onChange={(e) => setData('address', e.target.value)} />
+                <InputError message={errors.address} />
             </div>
 
             <div>

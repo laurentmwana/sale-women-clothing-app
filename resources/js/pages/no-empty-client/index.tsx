@@ -1,14 +1,16 @@
 import { BaseLayout } from '@/layouts/base-layout';
 import { SectionHeaderPage } from '@/shared/section-page';
-import { WorkPratical } from '@/types';
+import { FormatterObject } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
+import { ClientForm } from './client-form';
 
-type WorkPraticalShowProps = { workPratical: WorkPratical };
+const title = 'Complètez vos informations';
 
-const WorkPraticalShow = () => {
-    const { workPratical } = usePage<WorkPraticalShowProps>().props;
+type NoEmptyStudentIndexProps = { genders: FormatterObject[] };
 
-    const title = `En savoir plus sur le travail pratique #${workPratical.id}`;
+const NoEmptyStudentIndex = () => {
+    const { genders } = usePage<NoEmptyStudentIndexProps>().props;
+
     return (
         <BaseLayout>
             <Head title={title} />
@@ -19,9 +21,13 @@ const WorkPraticalShow = () => {
                         Vous avez un problème technique ? Vous souhaitez envoyer des commentaires sur une fonctionnalité bêta ? Besoin de détails sur
                         notre plan Business ? Faites le nous savoir.
                     </SectionHeaderPage>
+
+                    <div className="container-card max-w-3xl">
+                        <ClientForm genders={genders} />
+                    </div>
                 </div>
             </div>
         </BaseLayout>
     );
 };
-export default WorkPraticalShow;
+export default NoEmptyStudentIndex;

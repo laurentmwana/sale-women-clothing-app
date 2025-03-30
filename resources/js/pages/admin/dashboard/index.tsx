@@ -11,7 +11,9 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const DashboardIndex = () => {
+type DashboardIndexProps = { countClient: number; countUser: number; countProduct: number; countStock: number };
+
+const DashboardIndex = ({ countClient, countProduct, countStock, countUser }: DashboardIndexProps) => {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Tableau de bord" />
@@ -20,10 +22,11 @@ const DashboardIndex = () => {
                 <div>
                     <h2 className="mb-4 text-base font-semibold">Tableau de bord</h2>
 
-                    <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols3">
-                        <ChartSimple label="Produit" dataValue={12} />
-                        <ChartSimple label="Client" dataValue={3} />
-                        <ChartSimple label="Stock" dataValue={60} />
+                    <div className="lg:grid-cols3 mb-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+                        <ChartSimple label="Produit" dataValue={countProduct} />
+                        <ChartSimple label="Client" dataValue={countClient} />
+                        <ChartSimple label="Stock" dataValue={countStock} />
+                        <ChartSimple label="Utilisateur" dataValue={countUser} />
                     </div>
 
                     <div className="grid grid-cols-1">

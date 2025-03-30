@@ -51,9 +51,9 @@ export interface UserRole {
 
 export interface Stock {
     id: number;
-    stock_value: number
-    product: Product
-    product_id: number
+    stock_value: number;
+    product: Product;
+    product_id: number;
     created_at: string;
     updated_at: string;
 }
@@ -72,20 +72,20 @@ export interface Product {
     slug: string;
     image: string;
     price: number;
+    stock?: Stock;
     description: string;
     created_at: string;
     updated_at: string;
     categories: Category[];
     likes: Like[];
-    comments: Comment[];
 }
 
 export interface Like {
     id: number;
     product_id: number;
-    user_id: number
-    product: Product
-    user: User
+    user_id: number;
+    product: Product;
+    user: User;
     created_at: string;
     updated_at: string;
 }

@@ -1,13 +1,14 @@
 <?php
 
+use Inertia\Inertia;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
+use App\Http\Middleware\CompleteInfoClient;
 use App\Http\Middleware\HandleInertiaRequests;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -24,7 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
-            'state-student' => App\Http\Middleware\CompleteInfoStudent::class,
+            'state-client' => CompleteInfoClient::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
@@ -45,5 +46,4 @@ return Application::configure(basePath: dirname(__DIR__))
 
             return $response;
         });
-
     })->create();

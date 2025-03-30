@@ -6,11 +6,13 @@ use Closure;
 use App\Models\User;
 use App\Models\Student;
 use App\Enums\UserRoleEnum;
+use App\Models\Client;
+use App\Queries\ClientQuery;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\QueryBuilder\Catalogue\StudentQueryBuilder;
 
-class CompleteInfoStudent
+class CompleteInfoClient
 {
     /**
      * Handle an incoming request.
@@ -26,14 +28,14 @@ class CompleteInfoStudent
 
             switch ($situation) {
                 case 'no-empty':
-                    // $studentExist = StudentQueryBuilder::findToUser($user->id);
+                    $clientExist = ClientQuery::findForUser($user->id);
 
-                    // if (
-                    //     $user->hasRole(UserRoleEnum::ROLE_ANONYMOUS->value) ||
-                    //     !($studentExist instanceof Student)
-                    // ) {
-                    //     return redirect()->route('no-empty-student.index');
-                    // }
+                    if (
+                        $user->hasRole(UserRoleEnum::ROLE_ANONYMOUS->value) ||
+                        !($clientExist instanceof Client)
+                    ) {
+                        return redirect()->route('no-empty-client.index');
+                    }
                     break;
 
                 case 'empty':
