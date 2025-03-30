@@ -4,7 +4,7 @@ import { ButtonLink } from '@/components/ui/button-link';
 import { Pagination } from '@/components/ui/pagination';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
-import { truncate } from '@/lib/utils';
+import { formatPrice, truncate } from '@/lib/utils';
 import { Moment } from '@/shared/moment';
 import { SearchInput } from '@/shared/search-input';
 import { FormatterObject, PaginationData, Product, SharedData } from '@/types';
@@ -33,7 +33,6 @@ const ProductIndex = () => {
                             <TableRow>
                                 <TableHead>Nom</TableHead>
                                 <TableHead>Prix</TableHead>
-                                <TableHead>Like</TableHead>
                                 <TableHead>Categories</TableHead>
                                 <TableHead>Créer</TableHead>
                                 <TableHead>Actions</TableHead>
@@ -44,12 +43,7 @@ const ProductIndex = () => {
                                 return (
                                     <TableRow key={product.id}>
                                         <TableCell>{truncate(product.name, 40, '...')}</TableCell>
-                                        <TableCell>{product.price} Fc</TableCell>
-                                        <TableCell>
-                                            <Badge variant="outline" className="border-rose-200">
-                                                {product.likes.length}
-                                            </Badge>
-                                        </TableCell>
+                                        <TableCell>{formatPrice(product.price)}</TableCell>
                                         <TableCell>
                                             <Badge variant="outline">{product.categories.length}</Badge>
                                         </TableCell>

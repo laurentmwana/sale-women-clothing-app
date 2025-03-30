@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\UserRoleEnum;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateCardController;
 use App\Http\Controllers\Other\AboutController;
@@ -8,8 +7,6 @@ use App\Http\Controllers\Other\CardController;
 use App\Http\Controllers\Other\WelcomeController;
 use App\Http\Controllers\Other\CompleteInfoClientController;
 use App\Http\Controllers\Other\ProductController;
-
-define('MIDD_CLIENT', sprintf("role:%s", UserRoleEnum::ROLE_CLIENT->value));
 
 Route::get('/', WelcomeController::class)->name('welcome');
 Route::get('/about', AboutController::class)->name('other.about');
@@ -33,5 +30,6 @@ Route::middleware(['auth', 'verified', 'state-client:empty'])
 
 Route::get('/product', [ProductController::class, 'index'])
     ->name('product.index');
+
 Route::get('/product/{slug}/{id}', [ProductController::class, 'show'])
     ->name('product.show');

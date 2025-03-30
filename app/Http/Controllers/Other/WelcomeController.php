@@ -11,7 +11,7 @@ class WelcomeController extends Controller
 {
     public function __invoke(): Response
     {
-        $products = ProductQuery::findAllLimit(9);
+        $products = ProductQuery::findAllLimit(12);
 
         return Inertia::render('other/welcome/index', [
             'products' => $products

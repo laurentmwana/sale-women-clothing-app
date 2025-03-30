@@ -38,3 +38,5 @@ export const productTotal = (products: Product[]): string => {
 
     return total.toFixed(2);
 };
+
+export const formatPrice = (price: number) => price.toFixed(2) + ' Fc';

@@ -53,7 +53,7 @@ class HandleInertiaRequests extends Middleware
                 'roles' => $this->getUserRole($user),
             ],
             'flashMessage' =>  [
-                'toast' => $request->session()->get('toast', null),
+                'success' => $request->session()->get('success', null),
             ],
         ];
     }

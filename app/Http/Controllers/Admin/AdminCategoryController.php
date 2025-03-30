@@ -38,7 +38,7 @@ class AdminCategoryController extends Controller
     {
         $this->categoryAction->createCategory($request->validated());
 
-        return redirect()->route('#category.index')->with('toast', 'categorie créée');
+        return redirect()->route('#category.index')->with('success', 'categorie créée');
     }
 
     public function update(CategoryRequest $request, int $id): RedirectResponse
@@ -47,7 +47,7 @@ class AdminCategoryController extends Controller
 
         $this->categoryAction->updateCategory($request->validated(), $category);
 
-        return redirect()->route('#category.index')->with('toast', 'categorie modifiée');
+        return redirect()->route('#category.index')->with('success', 'categorie modifiée');
     }
 
     public function destroy(Request $request, int $id): RedirectResponse
@@ -60,6 +60,6 @@ class AdminCategoryController extends Controller
 
         $this->categoryAction->deleteCategory($category);
 
-        return redirect()->route('#category.index')->with('toast', 'categorie supprimée');
+        return redirect()->route('#category.index')->with('success', 'categorie supprimée');
     }
 }

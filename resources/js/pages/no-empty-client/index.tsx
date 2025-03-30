@@ -18,8 +18,8 @@ const NoEmptyStudentIndex = () => {
             <div className="container py-12">
                 <div className="container-center">
                     <SectionHeaderPage title={title}>
-                        Vous avez un problème technique ? Vous souhaitez envoyer des commentaires sur une fonctionnalité bêta ? Besoin de détails sur
-                        notre plan Business ? Faites le nous savoir.
+                        Bienvenue parmi nous ! Pour finaliser votre inscription et profiter pleinement de notre site, nous vous invitons à compléter
+                        vos informations. Cela nous permettra de mieux vous connaître et de vous offrir une expérience personnalisée.
                     </SectionHeaderPage>
 
                     <div className="container-card max-w-3xl">

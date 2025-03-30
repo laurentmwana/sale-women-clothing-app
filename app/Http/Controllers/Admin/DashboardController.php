@@ -16,14 +16,27 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
+        $paymentCounts = Payment::selectRaw('
+                SUM(status = ?) as countPaymentSuccess,
+                SUM(status != ?) as countPaymentFail,
+                SUM(CASE WHEN status = ? THEN amount ELSE 0 END) as sumPrices
+            ', [PaymentStateEnum::SUCCESS->value, PaymentStateEnum::SUCCESS->value, PaymentStateEnum::SUCCESS->value])
+            ->first();
+
+        $counts = Client::count('id');
+        $users = User::count('id');
+        $stock = Stock::sum('stock_value');
+        $products = Product::count('id');
+
         return Inertia::render('admin/dashboard/index', [
-            'countClient' => Client::count('id'),
-            'countUser' => User::count('id'),
-            'countStock' => Stock::sum('stock_value'),
-            'countProduct' => Product::count('id'),
-            'sumPrices' => Payment::whereStatus(PaymentStateEnum::SUCCESS->value)->sum('amount'),
-            'countPaymentFail' => Payment::where('status', '!=', PaymentStateEnum::SUCCESS->value)->count('id'),
-            'countPaymentSucces' => Payment::whereStatus(PaymentStateEnum::SUCCESS->value)->count('id'),
+            'countClient' => $counts,
+            'countUser' => $users,
+            'countStock' => $stock,
+            'countProduct' => $products,
+            'sumPrices' => $paymentCounts->sumPrices,
+            'countPaymentFail' => $paymentCounts->countPaymentFail,
+            'countPaymentSuccess' => $paymentCounts->countPaymentSuccess,
         ]);
     }
+
 }

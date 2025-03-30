@@ -1,3 +1,4 @@
+import FlashMessage from '@/components/flash-message';
 import { NavbarBase } from '@/components/nav-base';
 import { NetworkSocial } from '@/shared/network-social';
 import { ScrollTopButton } from '@/shared/scroll-top-button';
@@ -10,6 +11,8 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
 
     return (
         <>
+            <FlashMessage />
+
             <NavbarBase />
 
             <main>{children}</main>
@@ -23,9 +26,8 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
                             <div>
                                 <h2 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-100">Femme Vétement</h2>
                                 <p className="text-description mb-4">
-                                    Cette plateforme a été conçue pour offrir un accès facile et gratuit à des supports éducatifs essentiels, tout en
-                                    favorisant un esprit collaboratif. Nous encourageons chaque étudiant à partager ses ressources pour créer une
-                                    communauté d’apprentissage dynamique et solidaire.
+                                    Ce site a été réalisé dans le cadre d'un travail pratique du cours de Programmation Web 2. Ce cours, dispensé par
+                                    le professeur Kuyunsa Pierre.
                                 </p>
 
                                 <NetworkSocial />
@@ -50,16 +52,6 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
                                             </a>
                                         </li>
                                     </ul>
-                                    <div className="text-description mt-3 pl-2 text-start">
-                                        <span>développé par </span>
-                                        <a
-                                            target="_blank"
-                                            href="https://github.com/laurentmwana"
-                                            className="text-slate-900 underline dark:text-gray-300"
-                                        >
-                                            Labeya
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

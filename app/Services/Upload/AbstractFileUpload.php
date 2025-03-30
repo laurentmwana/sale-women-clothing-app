@@ -60,7 +60,7 @@ abstract class AbstractFileUpload
 
     private function resize(UploadedFile $upload, string $directory): string
     {
-        $image = Image::read($upload)->resize(450,600);
+        $image = Image::read($upload)->resize(640, 480);
 
         $path = $directory . DIRECTORY_SEPARATOR . Str::random(100) . '.' . $upload->getClientOriginalExtension();
         $content =  $image->encodeByExtension($upload->getClientOriginalExtension(), quality: 90);

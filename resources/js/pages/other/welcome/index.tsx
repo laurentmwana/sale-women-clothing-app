@@ -3,6 +3,7 @@ import type { Product, SharedData } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
 import { SectionHero } from './section-hero';
 import { SectionProduct } from './section-product';
+import { SectionFaq } from './section-quiz';
 
 type WelcomeIndexProps = { products: Product[] };
 
@@ -15,6 +16,7 @@ const WelcomeIndex = ({ products }: WelcomeIndexProps) => {
             <div className="container-doshed">
                 <SectionHero />
                 <SectionProduct products={products} />
+                <SectionFaq />
             </div>
         </BaseLayout>
     );

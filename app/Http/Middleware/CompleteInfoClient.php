@@ -39,8 +39,10 @@ class CompleteInfoClient
 
                 case 'empty':
                     if (!$user->hasRole(UserRoleEnum::ROLE_ANONYMOUS->value)) {
-                        return redirect()->route('welcome');
+                        return redirect()->route('welcome')
+                            ->with('success', 'vous ne pouvez pas accèder à cette page (:');
                     }
+
                     break;
 
                 default:

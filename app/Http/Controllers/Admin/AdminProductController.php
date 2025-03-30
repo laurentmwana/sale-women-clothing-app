@@ -72,7 +72,7 @@ class AdminProductController extends Controller
 
         $this->productAction->createproduct($data);
 
-        return redirect()->route('#product.index')->with('toast', 'produit créé');
+        return redirect()->route('#product.index')->with('success', 'produit créé');
     }
 
     public function edit(int $id): Response
@@ -100,13 +100,13 @@ class AdminProductController extends Controller
         $data = [
             ...$request->validated(),
             'image' => $imageUrl,
-            'slug' => Str::slug($request->validated('title')),
+            'slug' => Str::slug($request->validated('name')),
         ];
 
         $this->productAction->updateproduct($data, $product);
 
         return redirect()->route('#product.index')
-            ->with('toast', 'produit modifié');
+            ->with('success', 'produit modifié');
     }
 
 
@@ -120,6 +120,6 @@ class AdminProductController extends Controller
 
         $this->productAction->deleteproduct($product);
 
-        return redirect()->route('#product.index')->with('toast', 'produit supprimé');
+        return redirect()->route('#product.index')->with('success', 'produit supprimé');
     }
 }

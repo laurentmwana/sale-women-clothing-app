@@ -6,7 +6,6 @@ use App\Actions\CardAction;
 use App\Models\Client;
 use App\Queries\CardQuery;
 use App\Queries\ProductQuery;
-use App\Queries\ClientQuery;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Exceptions\ModelNotFoundException;
@@ -17,43 +16,31 @@ class CreateCardController extends Controller
 
     public function __invoke(Request $request, int $id): RedirectResponse
     {
-        $user = $request->user();
+        $user = $request->user()->load('client');
 
-        // Récupération du client associé à l'utilisateur
-        $client = ClientQuery::findForUser($user->id);
-        if (! $client instanceof Client) {
+        $client = $user->client;
+
+        if (!$client instanceof Client) {
             throw new ModelNotFoundException(
                 "Compte client introuvable pour l'utilisateur #{$user->id}"
             );
         }
 
         $product = ProductQuery::findOneWithRelation($id);
-        $stock = $product->stock;
 
-        if (! $stock || $stock->stock_value <= 0) {
-            throw new ModelNotFoundException(
-                "Produit non disponible en stock"
-            );
+        if (!$product || !$product->stock || $product->stock->stock_value <= 0) {
+            throw new ModelNotFoundException("Produit non disponible en stock");
         }
 
-        $card = CardQuery::findForClient($client->id);
+        $card = CardQuery::findOrCreateWithProducts($client->id);
 
-        if ($card) {
+        $existingProductIds = $card->products->pluck('id')->toArray();
 
-            $existingProductIds = $card->products->pluck('id')->toArray();
-            $newProductIds = [
-                ...$existingProductIds,
-                $product->id
-            ];
-
-            $this->cardAction->syncCard($card, array_unique($newProductIds));
-        } else {
-            $this->cardAction->createCard([
-                'client_id' => $client->id,
-                'products' => [$product->id]
-            ]);
+        if (!in_array($product->id, $existingProductIds)) {
+            $newProductIds = array_unique([...$existingProductIds, $product->id]);
+            $this->cardAction->syncCard($card, $newProductIds);
         }
 
-        return redirect()->back()->with('toast', 'Produit ajouté au panier');
+        return redirect()->back()->with('success', 'Produit ajouté au panier');
     }
 }

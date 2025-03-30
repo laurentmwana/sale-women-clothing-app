@@ -47,7 +47,7 @@ class AdminStockController extends Controller
             : $this->stockAction->createStock($request->validated());
 
 
-        return redirect()->route('#stock.index')->with('toast', 'stock créé');
+        return redirect()->route('#stock.index')->with('success', 'stock créé');
     }
 
     public function update(StockRequest $request, int $id): RedirectResponse
@@ -56,7 +56,7 @@ class AdminStockController extends Controller
 
         $this->stockAction->updateStock($request->validated(), $stock);
 
-        return redirect()->route('#stock.index')->with('toast', 'stock modifié');
+        return redirect()->route('#stock.index')->with('success', 'stock modifié');
     }
 
     public function destroy(Request $request, int $id): RedirectResponse
@@ -69,6 +69,6 @@ class AdminStockController extends Controller
 
         $this->stockAction->deleteStock($stock);
 
-        return redirect()->route('#stock.index')->with('toast', 'stock supprimé');
+        return redirect()->route('#stock.index')->with('success', 'stock supprimé');
     }
 }

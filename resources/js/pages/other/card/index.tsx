@@ -24,8 +24,8 @@ const CardIndex = () => {
                 <div className="container py-12">
                     <div className="container-center">
                         <SectionHeaderPage title={title}>
-                            Découvrez les articles récents, offrant des analyses, des réflexions et des informations à jour pour enrichir vos
-                            connaissances. Restez informé des dernières tendances et approfondissez vos sujets d'intérêt.
+                            Votre panier est l'endroit où vous pouvez retrouver tous les produits que vous avez sélectionnés avant de passer votre
+                            commande.
                         </SectionHeaderPage>
 
                         {card ? (
@@ -35,7 +35,7 @@ const CardIndex = () => {
                                         Client : {card.client.name} {card.client.firstname}
                                     </p>
                                     <p className="mb-3 text-sm">Total : {productTotal(card.products)} Fc</p>
-                                    <p className="text-sm mb-5">Status du paiement : {card.payment.status}</p>
+                                    <p className="mb-5 text-sm">Status du paiement : {card.payment.status}</p>
 
                                     <CardAction card={card} />
                                 </div>

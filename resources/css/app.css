@@ -159,7 +159,7 @@
     }
 
     .container-center {
-        @apply mx-auto max-w-6xl;
+        @apply mx-auto max-w-5xl;
     }
 
     .container-card {

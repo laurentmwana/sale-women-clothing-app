@@ -39,15 +39,15 @@ const DashboardIndex = ({
                     <h2 className="mb-4 text-base font-semibold">Tableau de bord</h2>
 
                     <div className="lg:grid-cols3 mb-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-                        <ChartSimple label="Produit" dataValue={countProduct} />
-                        <ChartSimple label="Client" dataValue={countClient} />
-                        <ChartSimple label="Stock" dataValue={countStock} />
-                        <ChartSimple label="Utilisateur" dataValue={countUser} />
+                        <ChartSimple label="Produit" dataValue={countProduct || 0} />
+                        <ChartSimple label="Client" dataValue={countClient || 0} />
+                        <ChartSimple label="Stock" dataValue={countStock || 0} />
+                        <ChartSimple label="Utilisateur" dataValue={countUser || 0} />
                     </div>
 
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                         <ChartRadian countData={countPaymentFail || 0} title="Paiement Echoué" />
-                        <ChartRadian countData={sumPrices} title="L'argent déjà reçu" alias="Fc" />
+                        <ChartRadian countData={sumPrices || 0} title="L'argent déjà reçu" alias="Fc" />
                         <ChartRadian countData={countPaymentSuccess || 0} title="Paiement Réçu" />
                     </div>
                 </div>

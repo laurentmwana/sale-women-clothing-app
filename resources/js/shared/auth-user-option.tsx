@@ -1,14 +1,7 @@
 import { User, UserRole } from '@/types';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useInitials } from '@/hooks/use-initials';
 import { isAdminOrProfessor } from '@/lib/auth';
 import { router } from '@inertiajs/react';
@@ -31,12 +24,6 @@ export const AuthUserOption = ({ user, roles }: AuthUserOptionProps) => {
                 <DropdownMenuItem onClick={() => router.get(route('profile.edit'))}>
                     <span className="flex items-center gap-2">Profil</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                    <span className="flex items-center gap-2">Notification</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuLabel>Autres</DropdownMenuLabel>
-
                 {isAdminOrProfessor(roles) && (
                     <DropdownMenuItem onClick={() => router.get(route('dashboard'))}>
                         <span className="flex items-center gap-2">Tableau de bord</span>

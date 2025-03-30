@@ -1,15 +1,16 @@
 <?php
 
 use App\Enums\UserRoleEnum;
+use App\Helpers\Auth\DefineRoleUser;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminStockController;
 use App\Http\Controllers\Admin\AdminProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 
-define('MIDD_ADMIN', sprintf("role:%s", UserRoleEnum::ROLE_ADMIN->value));
+$adminUserRole = DefineRoleUser::admin();
 
-Route::middleware(['auth', 'verified', MIDD_ADMIN])->group(function () {
+Route::middleware(['auth', 'verified', $adminUserRole])->group(function () {
     Route::get('dashboard', DashboardController::class)
         ->name('dashboard');
 

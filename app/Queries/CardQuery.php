@@ -55,6 +55,14 @@ class CardQuery
             ->first();
     }
 
+    public static function findOrCreateWithProducts(int $clientId): Card
+    {
+        return Card::with('products')->firstOrCreate([
+            'client_id' => $clientId,
+            'buy' => false,
+        ]);
+    }
+
     public static function findForClientAllRelation(int $clientId): ?Card
     {
         return Card::with(['products', 'payment', 'client', 'products.stock'])
