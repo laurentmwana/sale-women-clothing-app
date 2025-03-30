@@ -17,9 +17,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { ChartConfig, ChartContainer } from "@/components/ui/chart"
-const chartData = [
-  { browser: "safari", visitors: 1260, fill: "var(--color-safari)" },
-]
 
 const chartConfig = {
   visitors: {
@@ -31,12 +28,19 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export const ChartRadian = () => {
+type ChartRadianProps = {countData: number, title: string, alias?: string}
+
+export const ChartRadian = ({countData, title, alias =""} : ChartRadianProps) => {
+
+    const chartData = [
+        { browser: "safari", visitors: countData, fill: "var(--color-safari)" },
+      ]
+
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>
-Paiement Effectué
+            {title}
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
@@ -81,7 +85,7 @@ Paiement Effectué
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Fc
+                          {alias}
                         </tspan>
                       </text>
                     )

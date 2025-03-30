@@ -29,7 +29,10 @@ class CompleteInfoClientController extends Controller
         /** @var User */
         $user = $request->user();
 
-        $student =  $this->clientAction->createClient($request->validated(), $user);
+        $student =  $this->clientAction->createClient([
+            ...$request->validated(),
+            'user_id' => $user->id,
+        ]);
 
         if ($student instanceof Client) {
             $user->removeRole(

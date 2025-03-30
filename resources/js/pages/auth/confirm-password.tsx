@@ -1,14 +1,13 @@
 // Components
 import { Head, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/auth-layout';
 import { Loader } from '@/components/ui/loader';
+import AuthLayout from '@/layouts/auth-layout';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -38,7 +37,7 @@ export default function ConfirmPassword() {
                             id="password"
                             type="password"
                             name="password"
-                            placeholder="Password"
+                            placeholder="Mot de passe"
                             autoComplete="current-password"
                             value={data.password}
                             autoFocus
@@ -51,7 +50,7 @@ export default function ConfirmPassword() {
                     <div className="flex items-center">
                         <Button className="w-full" disabled={processing}>
                             {processing && <Loader />}
-                           Confirmation
+                            Confirmation
                         </Button>
                     </div>
                 </div>

@@ -126,7 +126,7 @@ export const ActionWithPassword = ({ routeAction, title, description, trigger, p
                                 ref={passwordInput}
                                 value={data.password}
                                 onChange={(e) => setData('password', e.target.value)}
-                                placeholder="Password"
+                                placeholder="Mot de passe"
                                 autoComplete="current-password"
                             />
 

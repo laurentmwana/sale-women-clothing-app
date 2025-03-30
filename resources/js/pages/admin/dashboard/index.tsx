@@ -11,9 +11,25 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-type DashboardIndexProps = { countClient: number; countUser: number; countProduct: number; countStock: number };
+type DashboardIndexProps = {
+    countClient: number;
+    countUser: number;
+    countProduct: number;
+    countStock: number;
+    sumPrices: number;
+    countPaymentFail?: number;
+    countPaymentSuccess?: number;
+};
 
-const DashboardIndex = ({ countClient, countProduct, countStock, countUser }: DashboardIndexProps) => {
+const DashboardIndex = ({
+    countClient,
+    countProduct,
+    countStock,
+    countUser,
+    sumPrices,
+    countPaymentFail,
+    countPaymentSuccess,
+}: DashboardIndexProps) => {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Tableau de bord" />
@@ -29,8 +45,10 @@ const DashboardIndex = ({ countClient, countProduct, countStock, countUser }: Da
                         <ChartSimple label="Utilisateur" dataValue={countUser} />
                     </div>
 
-                    <div className="grid grid-cols-1">
-                        <ChartRadian />
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                        <ChartRadian countData={countPaymentFail || 0} title="Paiement Echoué" />
+                        <ChartRadian countData={sumPrices} title="L'argent déjà reçu" alias="Fc" />
+                        <ChartRadian countData={countPaymentSuccess || 0} title="Paiement Réçu" />
                     </div>
                 </div>
             </div>

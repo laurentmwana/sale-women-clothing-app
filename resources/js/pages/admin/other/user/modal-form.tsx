@@ -96,7 +96,7 @@ export const ModalFormUser = ({ name, email, id }: ModalFormUserProps) => {
                                 value={data.password}
                                 onChange={(e) => setData('password', e.target.value)}
                                 disabled={processing}
-                                placeholder="Password"
+                                placeholder="Mot de passe"
                             />
                             <InputError message={errors.password} />
                         </div>

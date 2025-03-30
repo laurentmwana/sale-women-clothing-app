@@ -1,5 +1,4 @@
 import { Head, useForm } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import InputError from '@/components/input-error';
@@ -7,15 +6,15 @@ import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import AuthLayout from '@/layouts/auth-layout';
 import { Loader } from '@/components/ui/loader';
+import AuthLayout from '@/layouts/auth-layout';
 
-type RegisterForm =  {
+type RegisterForm = {
     name: string;
     email: string;
     password: string;
     password_confirmation: string;
-}
+};
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm<RegisterForm>({
@@ -81,7 +80,7 @@ export default function Register() {
                             value={data.password}
                             onChange={(e) => setData('password', e.target.value)}
                             disabled={processing}
-                            placeholder="Password"
+                            placeholder="Mot de passe"
                         />
                         <InputError message={errors.password} />
                     </div>
@@ -109,9 +108,9 @@ export default function Register() {
                 </div>
 
                 <div className="text-muted-foreground text-center text-sm">
-                Vous avez déjà un compte ?{' '}
+                    Vous avez déjà un compte ?{' '}
                     <TextLink href={route('login')} tabIndex={6}>
-                    Connectez-vous
+                        Connectez-vous
                     </TextLink>
                 </div>
             </form>
