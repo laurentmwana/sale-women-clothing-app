@@ -29,7 +29,6 @@ class CompleteInfoClient
             switch ($situation) {
                 case 'no-empty':
                     $clientExist = ClientQuery::findForUser($user->id);
-
                     if (
                         $user->hasRole(UserRoleEnum::ROLE_ANONYMOUS->value) ||
                         !($clientExist instanceof Client)

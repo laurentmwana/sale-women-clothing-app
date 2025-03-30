@@ -14,15 +14,13 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->integer('amount')->nullable();
             $table->enum('status', array_map(
                 fn(PaymentStateEnum $enum) => $enum->value,
                 PaymentStateEnum::cases()
             ));
-          
             $table->timestamps();
         });
-
-
     }
 
     /**

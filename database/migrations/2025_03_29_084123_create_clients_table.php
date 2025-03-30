@@ -38,6 +38,7 @@ return new class extends Migration
                 ->cascadeOnUpdate();
 
             $table->foreignId('card_id')
+                ->unique()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

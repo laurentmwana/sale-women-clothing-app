@@ -13,7 +13,7 @@ class WelcomeController extends Controller
     {
         $products = ProductQuery::findAllLimit(9);
 
-        return Inertia::render('welcome/index', [
+        return Inertia::render('other/welcome/index', [
             'products' => $products
         ]);
     }

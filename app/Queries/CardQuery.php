@@ -54,4 +54,12 @@ class CardQuery
             ->where('client_id', '=', $clientId)
             ->first();
     }
+
+    public static function findForClientAllRelation(int $clientId): ?Card
+    {
+        return Card::with(['products', 'payment', 'client', 'products.stock'])
+            ->where('buy', '=', false)
+            ->where('client_id', '=', $clientId)
+            ->first();
+    }
 }

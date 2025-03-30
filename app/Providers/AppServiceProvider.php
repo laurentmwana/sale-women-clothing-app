@@ -2,13 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Card;
+use App\Observers\PaymentObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
 
-    protected $policies = [
-    ];
+    protected $policies = [];
 
     /**
      * Register any application services.
@@ -23,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Card::observe(PaymentObserver::class);
     }
 }

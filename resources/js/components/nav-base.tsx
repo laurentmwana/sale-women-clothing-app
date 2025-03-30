@@ -19,11 +19,8 @@ export const NavbarBase = () => {
     const navItems = [
         { label: 'Accueil', href: route('welcome') },
         { label: 'A propos', href: route('other.about') },
-        // { label: 'Vétement', href: route('clothing.index') },
-        // { label: 'Dépôt', href: route('deposit.index') },
-        // { label: 'Support de cours', href: route('support-course.index') },
-        // { label: 'Article', href: route('post.index') },
-        // { label: 'Contact', href: route('contact.index') },
+        { label: 'Panier', href: route('card.index') },
+        { label: 'Produits', href: route('product.index') },
     ];
 
     return (

@@ -1,4 +1,4 @@
-import { ChartGraphic } from '@/components/ui/chart-graphic';
+import { ChartRadian } from '@/components/ui/chart-radian';
 import { ChartSimple } from '@/components/ui/chart-simple';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
@@ -30,7 +30,7 @@ const DashboardIndex = ({ countClient, countProduct, countStock, countUser }: Da
                     </div>
 
                     <div className="grid grid-cols-1">
-                        <ChartGraphic />
+                        <ChartRadian />
                     </div>
                 </div>
             </div>

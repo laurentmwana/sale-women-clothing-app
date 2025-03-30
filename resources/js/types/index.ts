@@ -77,26 +77,38 @@ export interface Product {
     created_at: string;
     updated_at: string;
     categories: Category[];
-    likes: Like[];
 }
 
-export interface Like {
+export interface Client {
     id: number;
-    product_id: number;
-    user_id: number;
-    product: Product;
+    name: string;
+    firstname: string;
+    phone: string;
+    address: string;
+    gender: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Card {
+    id: number;
+    client_id: number;
+    client: Client;
+    buy: boolean;
+    payment: Payment;
+    products: Product[];
     user: User;
     created_at: string;
     updated_at: string;
 }
 
-export interface Comment {
+export interface Payment {
     id: number;
-    username: string;
-    message: string;
-    product: Product;
-    lock: boolean;
-    product_id: number;
+    status: string;
+    client: Client;
+    card: Card;
+    card_id: number;
+    client_id: number;
     created_at: string;
     updated_at: string;
 }
