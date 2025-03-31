@@ -19,12 +19,12 @@ const CourseIndex = () => {
 
     return (
         <AppLayout>
-            <Head title="Levels" />
+            <Head title="Liste des utilisateurs" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className="container-card">
-                    <h2 className="text-base font-semibold">Liste des cours</h2>
+                    <h2 className="text-base font-semibold">Liste des utilisateurs</h2>
                     <div className="my-5 flex items-center justify-between">
-                        <SearchInput lenghtData={users.total} urlBack={route('#course.index')} />
+                        <SearchInput lenghtData={users.total} urlBack={route('#user.index')} />
                         <ModalFormUser id={null} name="" email="" />
                     </div>
                     <Table>
@@ -32,7 +32,8 @@ const CourseIndex = () => {
                             <TableRow>
                                 <TableHead>Nom</TableHead>
                                 <TableHead>Adresse e-mail</TableHead>
-                                <TableHead>Adresse e-mail vérifié</TableHead>
+                                <TableHead>Vérifié</TableHead>
+                                <TableHead>Rôle</TableHead>
                                 <TableHead>Créer</TableHead>
                                 <TableHead>Actions</TableHead>
                             </TableRow>
@@ -47,6 +48,14 @@ const CourseIndex = () => {
                                             <Badge variant={user.email_verified_at !== null ? 'secondary' : 'destructive'}>
                                                 {user.email_verified_at !== null ? 'Oui' : 'Non'}
                                             </Badge>
+                                        </TableCell>
+                                        <TableCell>
+                                                {user.roles.map(r => (
+                                                    <Badge variant="outline">
+                                                        {r.name}
+                                                    </Badge>
+                                                ))}
+                                            
                                         </TableCell>
                                         <TableCell>
                                             <Moment date={user.created_at} />

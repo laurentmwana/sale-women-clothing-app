@@ -3,7 +3,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { DollarSign, Filter, LayoutGrid, ListChecks, ListFilter, TowerControl } from 'lucide-react';
+import { DollarSign, Filter, LayoutGrid, ListChecks, ListFilter, TowerControl, User2 } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -32,8 +32,14 @@ const mainNavItems: NavItem[] = [
     },
 
     {
+        title: 'Utilisateur',
+        url: route('#user.index'),
+        icon: User2,
+    },
+
+    {
         title: 'Paiement',
-        url: '',
+        url: route('#payment.index'),
         icon: DollarSign,
     },
 ];

@@ -2,7 +2,7 @@
 
 namespace App\Queries;
 
-use App\Models\Like;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Searchable\SearchData;
 use Illuminate\Support\Collection;
@@ -12,17 +12,17 @@ class PaymentQuery
 {
     public static function findAll(): Collection
     {
-        return Like::with(['product', 'user'])
+        return Payment::with(['card', 'client'])
             ->orderByDesc('updated_at')
             ->get();
     }
 
     public static function findAllWithFilters(Request $request): LengthAwarePaginator
     {
-        $builder =  Like::with(['product', 'user'])
+        $builder =  Payment::with(['card', 'client'])
             ->orderByDesc('updated_at');
 
-        $columnSearch = ['Like_value', 'product_id', 'user_id', 'id'];
+        $columnSearch = ['card_id', 'client_id', 'id',  'amount', 'status'];
 
         $serachValue = $request->query('q');
 
@@ -35,21 +35,14 @@ class PaymentQuery
 
     public static function findAllWithRelation(): Collection
     {
-        return Like::with(['product', 'user'])
+        return Payment::with(['card', 'client'])
             ->orderByDesc('updated_at')
             ->get();
     }
 
-    public static function findOne(int $id): Like
+    public static function findOne(int $id): Payment
     {
-        return Like::with(['product', 'user'])
+        return Payment::with(['card', 'client'])
             ->findOrFail($id);
-    }
-
-    public static function findLikeForUser(int $userId, int $productId): ?Like
-    {
-        return Like::where('user_id', '=', $userId)
-            ->where('product_id', '=', $productId)
-            ->first();
     }
 }
