@@ -162,7 +162,7 @@ export const ProductDetail = ({ product }: { product: Product }) => {
                     {/* Action Buttons */}
                     <div className="border-border mt-auto border-t pt-6">
                         <div className="flex flex-col gap-4 sm:flex-row">
-                            <Button size="lg" className="flex-1" disabled={!inStock}>
+                            <Button size="lg" className="lg:flex-1" disabled={!inStock}>
                                 Ajouter au panier
                             </Button>
                         </div>

@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const title = `À propos `;
 
+
+
 export const AboutSection = () => {
     return (
         <div>
@@ -63,34 +65,34 @@ export const AboutSection = () => {
 
                     <ol className="list-decimal space-y-1 pl-6 text-sm">
                         <li>
-                            <strong>Agnès Mwamba (Présidente)</strong>
+                            <strong>Nyunga mutombo Agnès  (Présidente)</strong>
                         </li>
                         <li>
-                            <strong>Marc Tshibanda</strong>
+                            <strong> Djakuwa mabo </strong>
                         </li>
                         <li>
-                            <strong>Sophie Nguema</strong>
+                            <strong>Abondoa </strong>
                         </li>
                         <li>
-                            <strong>Jean-Marc Ilunga</strong>
+                            <strong>motingia divine  </strong>
                         </li>
                         <li>
-                            <strong>Claire Mbuyi</strong>
+                            <strong>Booyo wese Christelle </strong>
                         </li>
                         <li>
-                            <strong>Lucienne Malu</strong>
+                            <strong>Odia milenda marie</strong>
                         </li>
                         <li>
-                            <strong>Koffi Abedi</strong>
+                            <strong> Luyeye  Mbimbi perside</strong>
                         </li>
                         <li>
-                            <strong>Nathalie Tamba</strong>
+                            <strong>kwete bushabu Ambroise</strong>
                         </li>
                         <li>
-                            <strong>Benjamin Lelo</strong>
+                            <strong></strong>
                         </li>
                         <li>
-                            <strong>Eric Kabongo</strong>
+                            <strong></strong>
                         </li>
                     </ol>
 

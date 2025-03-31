@@ -21,6 +21,7 @@ export const NavbarBase = () => {
         { label: 'A propos', href: route('other.about') },
         { label: 'Panier', href: route('card.index') },
         { label: 'Produits', href: route('product.index') },
+        { label: 'Paiement', href: route('payment.index') },
     ];
 
     return (

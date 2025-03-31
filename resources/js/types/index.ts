@@ -25,7 +25,6 @@ export interface NavItem {
 interface FlashMessage {
     success: string | null;
     danger: string | null;
-    danger: string | null;
 }
 
 export interface SharedData {
@@ -106,6 +105,7 @@ export interface Card {
 
 export interface Payment {
     id: number;
+    amount: number;
     status: string;
     client: Client;
     card: Card;

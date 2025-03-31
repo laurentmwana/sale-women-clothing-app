@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Models\Client;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Enums\GenderEnum;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Unique;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ClientCompleteRequest extends FormRequest
 {
@@ -34,6 +36,11 @@ class ClientCompleteRequest extends FormRequest
             'firstname' => [
                 'required',
                 'between:3,30'
+            ],
+
+            'gender' => [
+                'required',
+                Rule::enum(GenderEnum::class)
             ],
 
             'phone' => [

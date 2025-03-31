@@ -1,6 +1,7 @@
 import { ChartRadian } from '@/components/ui/chart-radian';
 import { ChartSimple } from '@/components/ui/chart-simple';
 import AppLayout from '@/layouts/app-layout';
+import { formatPriceFixed } from '@/lib/utils';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
@@ -46,9 +47,9 @@ const DashboardIndex = ({
                     </div>
 
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        <ChartRadian countData={countPaymentFail || 0} title="Paiement Echoué" />
+                        <ChartRadian countData={formatPriceFixed(countPaymentFail || 0) } title="Paiement Echoué" />
                         <ChartRadian countData={sumPrices || 0} title="L'argent déjà reçu" alias="Fc" />
-                        <ChartRadian countData={countPaymentSuccess || 0} title="Paiement Réçu" />
+                        <ChartRadian countData={formatPriceFixed(countPaymentSuccess || 0)} title="Paiement Réçu" />
                     </div>
                 </div>
             </div>

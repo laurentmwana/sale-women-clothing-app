@@ -14,7 +14,7 @@ export const CardAction = ({ card }: CardActionProps) => {
                     <span>Effectuer le paiement</span>
                 </Button>
             }
-            routeAction=""
+            routeAction={route('payment.pay', {id: card.id})}
             title="Confirmation pour le paiement"
         />
     );

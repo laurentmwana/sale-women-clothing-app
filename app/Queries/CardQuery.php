@@ -42,6 +42,19 @@ class CardQuery
             ->get();
     }
 
+    public static function findAllForClientPagination(int $clientId): LengthAwarePaginator
+    {
+        return Card::with(['client', 'products.stock', 'payment'])
+            ->where('client_id', '=', $clientId)
+        ->paginate();
+    }
+
+    public static function findOneAllRelation(int $id): Card
+    {
+        return Card::with(['client', 'products.stock'])
+            ->findOrFail($id);
+    }
+
     public static function findOne(int $id): Card
     {
         return Card::with(['client'])

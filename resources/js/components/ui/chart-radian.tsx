@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { ChartConfig, ChartContainer } from "@/components/ui/chart"
+import { formatPriceFixed } from "@/lib/utils"
 
 const chartConfig = {
   visitors: {
@@ -28,7 +29,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-type ChartRadianProps = {countData: number, title: string, alias?: string}
+type ChartRadianProps = {countData: number | string, title: string, alias?: string}
 
 export const ChartRadian = ({countData, title, alias =""} : ChartRadianProps) => {
 
