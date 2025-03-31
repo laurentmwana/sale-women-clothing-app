@@ -41,14 +41,18 @@ export const productTotal = (products: Product[]): string => {
 
 export const formatPrice = (price: number) => price.toFixed(2) + ' Fc';
 
-export const formatPriceFixed = (number: number): string => {
-        if (number >= 1000000000) {
-            return (number / 1000000000).toFixed(1) + 'B';
-        } else if (number >= 1000000) {
-            return (number / 1000000).toFixed(1) + 'M'; 
-        } else if (number >= 1000) {
-            return (number / 1000).toFixed(1) + 'K';
-        } else {
-            return number.toFixed(2); 
-        }
-}
+export const formatPriceFixed = (price: number | null): string | number => {
+    if (price === null || price === undefined)  return 0
+    
+    if (price >= 0 && price < 10) return price.toString();
+
+    if (price >= 1000000000) {
+        return (price / 1000000000).toFixed(1) + 'B';
+    } else if (price >= 1000000) {
+        return (price / 1000000).toFixed(1) + 'M';
+    } else if (price >= 1000) {
+        return (price / 1000).toFixed(1) + 'K';
+    } else {
+        return price.toFixed(2);
+    }
+};

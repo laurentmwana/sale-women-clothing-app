@@ -1,6 +1,7 @@
 import type React from "react"
 import { cn } from "@/lib/utils"
 import { Loader2 } from "lucide-react"
+import { Skeleton } from "./skeleton"
 
 interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: number
@@ -79,3 +80,31 @@ export const Loader = ({ size = 24, strokeWidth = 2, color, className, variant =
   )
 }
 
+
+export const LoadingSkeleton =() => {
+  return (
+    <div className="fixed inset-0 bg-white bg-opacity-80 z-50 flex items-center justify-center">
+      <div className="space-y-8 w-full max-w-md">
+        {/* Header skeleton */}
+        <Skeleton className="h-8 bg-gray-200 rounded-md animate-pulse"></Skeleton>
+
+        {/* Content skeleton */}
+        <div className="space-y-4">
+          <Skeleton className="h-4 bg-gray-200 rounded-md animate-pulse"></Skeleton>
+          <Skeleton className="h-4 bg-gray-200 rounded-md animate-pulse w-5/6"></Skeleton>
+          <Skeleton className="h-4 bg-gray-200 rounded-md animate-pulse"></Skeleton>
+          <Skeleton className="h-4 bg-gray-200 rounded-md animate-pulse w-4/6"></Skeleton>
+        </div>
+
+        <div className="space-y-4 p-4 border border-gray-200 rounded-md">
+          <Skeleton className="h-6 rounded-md animate-pulse w-1/2"></Skeleton>
+          <Skeleton className="h-4 rounded-md animate-pulse"></Skeleton>
+          <Skeleton className="h-4 rounded-md animate-pulse w-5/6"></Skeleton>
+          <Skeleton className="h-10 rounded-md animate-pulse w-1/3 mt-4"></Skeleton>
+        </div>
+      </div>
+    </div>
+  )
+
+
+}

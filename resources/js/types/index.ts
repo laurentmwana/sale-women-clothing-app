@@ -22,7 +22,7 @@ export interface NavItem {
     isActive?: boolean;
 }
 
-interface FlashMessage {
+export interface FlashMessage {
     success: string | null;
     danger: string | null;
     warning: string | null;

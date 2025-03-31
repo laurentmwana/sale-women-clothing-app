@@ -16,13 +16,16 @@ export const NavbarBase = () => {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    const navItems = [
+    let navItems = [
         { label: 'Accueil', href: route('welcome') },
         { label: 'A propos', href: route('other.about') },
-        { label: 'Panier', href: route('card.index') },
         { label: 'Produits', href: route('product.index') },
-        { label: 'Paiement', href: route('payment.index') },
+
+
     ];
+
+    navItems = auth.user ? [...navItems, { label: 'Panier', href: route('card.index') },
+        { label: 'Paiement', href: route('payment.index') }] : navItems
 
     return (
         <nav className="bg-background/95 border-border sticky top-0 z-50 border-b backdrop-blur-sm">

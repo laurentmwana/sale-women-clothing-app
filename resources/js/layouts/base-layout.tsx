@@ -1,4 +1,4 @@
-import FlashMessage from '@/components/flash-message';
+import { FlashMessage } from '@/components/flash-message';
 import { NavbarBase } from '@/components/nav-base';
 import { NetworkSocial } from '@/shared/network-social';
 import { ScrollTopButton } from '@/shared/scroll-top-button';
@@ -7,12 +7,11 @@ import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren } from 'react';
 
 export const BaseLayout = ({ children }: PropsWithChildren) => {
-    const { auth } = usePage<SharedData>().props;
+    const { auth, flashMessage } = usePage<SharedData>().props;
 
     return (
         <>
-            <FlashMessage />
-
+            <FlashMessage flashMessage={flashMessage} />
             <NavbarBase />
 
             <main>{children}</main>

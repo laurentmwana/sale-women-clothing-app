@@ -18,6 +18,12 @@ Route::middleware(['auth', "verified", 'state-client:no-empty'])
 
         Route::get('/card', CardController::class)
             ->name('card.index');
+
+        Route::post('/payment/card/{id}', [PaymentController::class, 'pay'])
+            ->name('payment.pay');
+
+        Route::get('/payments', [PaymentController::class, 'index'])
+            ->name('payment.index');
     });
 
 Route::middleware(['auth', 'verified', 'state-client:empty'])
@@ -34,9 +40,3 @@ Route::get('/product', [ProductController::class, 'index'])
 
 Route::get('/product/{slug}/{id}', [ProductController::class, 'show'])
     ->name('product.show');
-
-Route::post('/payment/card/{id}', [PaymentController::class, 'pay'])
-    ->name('payment.pay');
-
-    Route::get('/payments', [PaymentController::class, 'index'])
-    ->name('payment.index');

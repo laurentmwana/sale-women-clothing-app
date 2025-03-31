@@ -47,9 +47,9 @@ const DashboardIndex = ({
                     </div>
 
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                        <ChartRadian countData={countPaymentFail || 0} title="Paiement Echoué" />
-                        <ChartRadian countData={formatPriceFixed(sumPrices || 0)} title="L'argent déjà reçu" alias="Fc" />
-                        <ChartRadian countData={countPaymentSuccess || 0} title="Paiement Réçu" />
+                        <ChartRadian countData={countPaymentFail ? countPaymentFail : 0} title="Paiement Echoué" />
+                        <ChartRadian countData={formatPriceFixed(sumPrices)} title="L'argent déjà reçu" alias="Fc" />
+                        <ChartRadian countData={countPaymentSuccess ? countPaymentSuccess : 0} title="Paiement Réçu" />
                     </div>
                 </div>
             </div>
