@@ -25,7 +25,7 @@ export interface NavItem {
 interface FlashMessage {
     success: string | null;
     danger: string | null;
-    danger: string | null;
+    warning: string | null;
 }
 
 export interface SharedData {

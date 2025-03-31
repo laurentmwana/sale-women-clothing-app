@@ -5,7 +5,7 @@ import { usePage } from '@inertiajs/react';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 
-export default function FlashMessages() {
+export default function FlashMessage() {
     const { flashMessage } = usePage<SharedData>().props;
 
     useEffect(() => {
