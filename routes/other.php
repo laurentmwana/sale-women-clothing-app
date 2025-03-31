@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateCardController;
-use App\Http\Controllers\Other\AboutController;
 use App\Http\Controllers\Other\CardController;
+use App\Http\Controllers\Other\AboutController;
+use App\Http\Controllers\Other\PaymentController;
+use App\Http\Controllers\Other\ProductController;
 use App\Http\Controllers\Other\WelcomeController;
 use App\Http\Controllers\Other\CompleteInfoClientController;
-use App\Http\Controllers\Other\ProductController;
 
 Route::get('/', WelcomeController::class)->name('welcome');
 Route::get('/about', AboutController::class)->name('other.about');
@@ -33,3 +34,9 @@ Route::get('/product', [ProductController::class, 'index'])
 
 Route::get('/product/{slug}/{id}', [ProductController::class, 'show'])
     ->name('product.show');
+
+Route::post('/payment/card/{id}', [PaymentController::class, 'pay'])
+    ->name('payment.pay');
+
+    Route::get('/payments', [PaymentController::class, 'index'])
+    ->name('payment.index');

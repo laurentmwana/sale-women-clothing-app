@@ -1,7 +1,6 @@
 import AppLayout from '@/layouts/app-layout';
-import { FormatterObject, Payment, type BreadcrumbItem } from '@/types';
+import { Payment, type BreadcrumbItem } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
-import { ModalFormPayment } from './modal-form';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -14,10 +13,10 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-type PaymentShowProps = { payment: Payment, students: FormatterObject[] };
+type PaymentShowProps = { payment: Payment};
 
 const PaymentShow = () => {
-    const { payment, students } = usePage<PaymentShowProps>().props;
+    const { payment } = usePage<PaymentShowProps>().props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -26,12 +25,7 @@ const PaymentShow = () => {
                 <div className="container-card">
                     <div className="flex items-center justify-between gap-5">
                         <h2 className="text-base font-semibold">{payment.id}</h2>
-                        <ModalFormPayment
-                            id={payment.id}
-                            students={students}
-                            student_id={payment.student_id}
-                            deposit_id={payment.deposit_id}
-                        />
+                   
                     </div>
                 </div>
             </div>
